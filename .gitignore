@@ -1,0 +1,10 @@
+.vscode
+npm-debug.log
+
+node_modules
+platforms
+plugins
+
+jsconfig.json
+
+www/config.js
