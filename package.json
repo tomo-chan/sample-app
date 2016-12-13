@@ -16,5 +16,5 @@
     "test": "mocha-phantomjs -R dot tests/test.html"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

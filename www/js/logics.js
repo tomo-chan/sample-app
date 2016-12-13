@@ -25,3 +25,19 @@ function uploadSuccessCallback(result) {
 function uploadFailureCallback(error) {
     showResult(error.code);
 }
+
+function showImagesBtnTouchendEventHandler(evt) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', ENV.serverurl + 'api/v1/images');
+    xhr.onload = function() {
+        if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+                var images = xhr.response.files;
+                showImageList(images);
+            } else {
+                showResult(xhr.status);
+            }
+        }
+    };
+    xhr.send();
+}

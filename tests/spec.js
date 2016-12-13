@@ -25,11 +25,16 @@ describe('actions.js', function() {
       var imageUrl = getImageUrl();
       expect(imageUrl).to.contains(uri);
   });
+  describe('showImageList', function() {
+      var images = ['tests/files/test.jpg', 'tests/files/test.jpg'];
+      showImageList(images);
+      var list = document.getElementById('image-list');
+      expect(list.childNodes.length).to.equal(images.length);
+  });
 
 });
 
 describe('logics.js', function() {
-
   before(function(){
     if(navigator && !navigator.camera) {
       navigator.camera = {};
@@ -79,6 +84,12 @@ describe('logics.js', function() {
     it('should get alert', function() {
       uploadFailureCallback({"code": -1, "source": "src", "target": "target"});
       expect(alert.args[0][0]).to.equal("Error: -1");
+    });
+  });
+  
+  describe('showImagesBtnTouchendEventHandler', function() {
+    it('should upload image', function() {
+      showImagesBtnTouchendEventHandler();
     });
   });
 });
