@@ -4,25 +4,24 @@ function cameraBtnTouchendEventHandler(evt) {
 
 function cameraSuccessCallback(imageUrl) {
     console.log('success');
-    var image = document.getElementById('capture-image');
-    image.src = imageUrl;
+    showImage(imageUrl);
 }
 
 function cameraFailureCallback(msg) {
-    alert('Error: '+ msg);
+    showResult(msg);
 }
 
 function uploadBtnTouchendEventHandler(evt) {
+    var imageUrl = getImageUrl();
     var ft = new FileTransfer();
-    var image = document.getElementById('capture-image');
-    ft.upload(image.src, encodeURI(ENV.serverurl + "api/v1/images"), 
+    ft.upload(imageUrl, encodeURI(ENV.serverurl + "api/v1/images"), 
       uploadSuccessCallback, uploadFailureCallback);
 }
 
 function uploadSuccessCallback(result) {
-    alert('success');
+    showResult(null, 'success');
 }
 
 function uploadFailureCallback(error) {
-    alert(error.code);
+    showResult(error.code);
 }

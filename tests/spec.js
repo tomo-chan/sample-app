@@ -1,6 +1,34 @@
 var assert = chai.assert;
 
-describe('sample.js', function() {
+describe('actions.js', function() {
+
+  beforeEach(function() {
+    alert = sinon.spy();
+  });
+  afterEach(function() {
+    var image = document.getElementById('capture-image');
+    delete image.src;
+  });
+
+  describe('showImage', function() {
+    it('should show an image', function() {
+      var uri = 'tests/files/test.jpg';
+      showImage(uri);
+      var img = document.getElementById('capture-image');
+      expect(img.src).to.contains(uri);
+    });
+  });
+  describe('getImageUrl', function() {
+      var uri = 'tests/files/test.jpg';
+      var img = document.getElementById('capture-image');
+      img.src = uri;
+      var imageUrl = getImageUrl();
+      expect(imageUrl).to.contains(uri);
+  });
+
+});
+
+describe('logics.js', function() {
 
   before(function(){
     if(navigator && !navigator.camera) {
@@ -50,7 +78,7 @@ describe('sample.js', function() {
   describe('uploadFailureCallback', function() {
     it('should get alert', function() {
       uploadFailureCallback({"code": -1, "source": "src", "target": "target"});
-      expect(alert.args[0][0]).to.equal(-1);
+      expect(alert.args[0][0]).to.equal("Error: -1");
     });
   });
 });
