@@ -22,12 +22,9 @@ function getImageUrl() {
 function showImageList(images) {
     var ul = document.getElementById('image-list');
     var li = document.createElement('li');
-    var anchor = document.createElement('a');
     images.forEach(function(image) {
         var l = li.cloneNode();
-        var a = anchor.cloneNode();
-        a.href = image;
-        l.appendChild(a);
+        l.textContent = image;
         ul.appendChild(l);
     });
 }
