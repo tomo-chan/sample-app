@@ -32,8 +32,8 @@ function showImagesBtnTouchendEventHandler(evt) {
     xhr.onload = function() {
         if(xhr.readyState === 4) {
             if(xhr.status === 200) {
-                var images = xhr.response.files;
-                showImageList(images);
+                var images = JSON.parse(xhr.response);
+                showImageList(images.files);
             } else {
                 showResult(xhr.status);
             }
